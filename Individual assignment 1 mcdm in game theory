@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+a = 100
+b = 1
+c_A = 20
+c_B = 30
+
+# Reaction functions
+def reaction_function_A(q_B):
+    return (a - c_A - b * q_B) / (2 * b)
+
+def reaction_function_B(q_A):
+    return (a - c_B - b * q_A) / (2 * b)
+
+# Calculate equilibrium quantities
+q_B = np.linspace(0, 100, 100)
+q_A = reaction_function_A(q_B)
+q_B_equilibrium = reaction_function_B(q_A)
+
+# Find equilibrium point
+equilibrium_A = reaction_function_A(q_B_equilibrium)
+equilibrium_B = reaction_function_B(q_A)
+
+# Plot reaction functions
+plt.figure(figsize=(10, 6))
+plt.plot(q_B, q_A, label='Reaction Function of Company A')
+plt.plot(q_A, q_B, label='Reaction Function of Company B')
+plt.scatter(equilibrium_A, equilibrium_B, color='red', label='Nash Equilibrium')
+plt.xlabel('Quantity produced by Company B')
+plt.ylabel('Quantity produced by Company A')
+plt.title('Reaction Functions and Nash Equilibrium')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+equilibrium_A, equilibrium_B
